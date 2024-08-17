@@ -1,0 +1,36 @@
+soong_namespace {
+	imports: [
+		"vendor/unifiednlp",
+	],
+}
+
+android_app_import {
+	name: "UnifiedNlp",
+	apk: "proprietary/UnifiedNlp.apk",
+	presigned: true,
+	privileged: true,
+	preprocessed: true,
+	skip_preprocessed_apk_checks: true,
+	dex_preopt: {
+		enabled: false,
+	},
+    required: [
+		"privapp-permissions-unifiednlp.xml",
+		"default-permissions-unifiednlp.xml",
+	],
+	product_specific: true,
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-unifiednlp.xml",
+    src: "privapp-permissions-unifiednlp.xml",
+    sub_dir: "permissions",
+    product_specific: true,
+}
+
+prebuilt_etc {
+    name: "default-permissions-unifiednlp.xml",
+    src: "default-permissions-unifiednlp.xml",
+    sub_dir: "default-permissions",
+    product_specific: true,
+}
